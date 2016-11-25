@@ -125,11 +125,6 @@ include vendor/cm/config/cm_audio.mk
 # Theme engine
 include vendor/cm/config/themes_common.mk
 
-ifneq ($(TARGET_DISABLE_CMSDK), true)
-# CMSDK
-include vendor/cm/config/cmsdk_common.mk
-endif
-
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
