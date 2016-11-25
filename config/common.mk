@@ -1,5 +1,3 @@
-PRODUCT_BRAND ?= cyanogenmod
-
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
 TARGET_BOOTANIMATION_SIZE := $(shell \
@@ -107,39 +105,20 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
-# Enable SIP+VoIP on all targets
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
-
-# Enable wireless Xbox 360 controller support
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
-
 # This is CM!
 PRODUCT_COPY_FILES += \
     vendor/cm/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
-
-# Theme engine
-include vendor/cm/config/themes_common.mk
-
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
-    CMAudioService \
     CMParts \
     Development \
-    Profiles \
-    WeatherManagerService
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
     libemoji \
     LiveWallpapersPicker \
-    PhotoTable \
-    Terminal
 
 # Include librsjni explicitly to workaround GMS issue
 PRODUCT_PACKAGES += \
@@ -147,22 +126,10 @@ PRODUCT_PACKAGES += \
 
 # Custom CM packages
 PRODUCT_PACKAGES += \
-    AudioFX \
-    CMFileManager \
-    CMSettingsProvider \
-    CMUpdater \
-    CMWallpapers \
-    CyanogenSetupWizard \
-    Eleven \
     ExactCalculator \
     Launcher3 \
-    LiveLockScreenService \
     LockClock \
-    Screencast \
-    SoundRecorder \
-    Trebuchet \
-    WallpaperPicker \
-    WeatherProvider
+    Trebuchet
 
 # Exchange support
 PRODUCT_PACKAGES += \
@@ -383,9 +350,5 @@ endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.cm.display.version=$(CM_DISPLAY_VERSION)
-
--include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/cm/config/partner_gms.mk
--include vendor/cyngn/product.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)
