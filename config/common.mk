@@ -187,19 +187,21 @@ DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
 PRODUCT_VERSION = v1.0
-VERSION_NAME = Atlas
+CODE_NAME = ATLAS
 
 # Unofficial by default unless defined
 ifndef VERTEX_BUILDTYPE
 	VERTEX_BUILDTYPE := UNOFFICIAL	
 endif
 
-VERTEX_VERSION := VertexOS_$(VERSION_NAME)-$(PRODUCT_VERSION)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILDTYPE)-$(VERTEX_BUILD)
+VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
+
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.version=$(VERTEX_VERSION) \
   ro.vertex.releasetype=$(VERTEX_BUILDTYPE) \
-  ro.modversion=$(VERTEX_VERSION)
+  ro.modversion=$(VERTEX_MODVERSION)
 
 
 PRODUCT_PROPERTY_OVERRIDES += \
