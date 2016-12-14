@@ -190,7 +190,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v1.0
+PRODUCT_VERSION = v1.1
 CODE_NAME = ATLAS
 
 # Unofficial by default unless defined
