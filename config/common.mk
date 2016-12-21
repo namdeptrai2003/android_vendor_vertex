@@ -24,6 +24,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
+# Enable Google Assistant
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.opa.eligible_device=true
+							  
 # Import some sounds
 $(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
 
