@@ -33,8 +33,8 @@ $(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.notification_sound=Argon.ogg \
-    ro.config.alarm_alert=Hassium.ogg
+    ro.config.notification_sound=Titan.ogg \
+    ro.config.alarm_alert=Bounce.ogg
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
