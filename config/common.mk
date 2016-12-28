@@ -76,10 +76,6 @@ PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# SuperSU
-PRODUCT_COPY_FILES += \
-    vendor/vertex/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
-
 # Vertex-specific init file
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/etc/init.local.rc:root/init.vertex.rc
