@@ -193,7 +193,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v1.2
+PRODUCT_VERSION = v1.3
 CODE_NAME = ATLAS
 
 # Unofficial by default unless defined
@@ -222,5 +222,3 @@ ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
 endif
 
 -include vendor/vertex-priv/keys/keys.mk
-
-$(call prepend-product-if-exists, vendor/extra/product.mk)
