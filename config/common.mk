@@ -102,7 +102,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ExactCalculator \
     Launcher3 \
-    LockClock
+    LockClock \
+	masquerade
 
 # Exchange support
 PRODUCT_PACKAGES += \
