@@ -24,6 +24,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
+# Enable Tethering
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.dun.override=0
+
 # Enable Google Assistant
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opa.eligible_device=true
