@@ -198,7 +198,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v1.8
+PRODUCT_VERSION = v1.9
 CODE_NAME = ATLAS
 
 # Unofficial by default unless defined
@@ -207,10 +207,10 @@ ifndef VERTEX_BUILDTYPE
 endif
 
 # Name of flashable zip
-VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-OMS-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
+VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
 
 # Version Shown in Settings -> About
-VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-OMS-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.version=$(VERTEX_VERSION) \
