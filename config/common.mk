@@ -86,7 +86,7 @@ endif
 
 # Vertex-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/vertex/prebuilt/common/etc/init.local.rc:root/init.vertex.rc
+    vendor/vertex/prebuilt/common/etc/init.local.rc:root/init.cm.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
