@@ -201,7 +201,7 @@ CODE_NAME = ATLAS
 
 # Unofficial by default unless defined
 ifndef VERTEX_BUILDTYPE
-	VERTEX_BUILDTYPE := UNOFFICIAL	
+	VERTEX_BUILDTYPE := UNOFFICIAL
 endif
 
 # Name of flashable zip
