@@ -2,6 +2,3 @@
 #
 # Custom script
 #
-
-# Disable Firebase Analytics
-pm disable com.google.android.gms/.measurement.PackageMeasurementService
