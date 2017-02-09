@@ -68,10 +68,6 @@ PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/vertex/prebuilt/common/bin/sysinit:system/bin/sysinit
 
-# Custom init.d script
-PRODUCT_COPY_FILES += \
-    vendor/vertex/prebuilt/common/etc/init.d/99customscript:system/etc/init.d/99customscript
-
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
