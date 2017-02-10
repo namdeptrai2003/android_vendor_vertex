@@ -192,8 +192,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v1.9
-CODE_NAME = ATLAS
+PRODUCT_VERSION = v2.0
+CODE_NAME = BLAZAR
 
 # Unofficial by default unless defined
 ifndef VERTEX_BUILDTYPE
