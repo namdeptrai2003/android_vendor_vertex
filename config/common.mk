@@ -193,18 +193,23 @@ DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
 PRODUCT_VERSION = v2.0
-CODE_NAME = BLAZAR
+CODE_NAME = Blazar
 
 # Unofficial by default unless defined
 ifndef VERTEX_BUILDTYPE
 	VERTEX_BUILDTYPE := UNOFFICIAL
 endif
 
+# Version Shown in Settings -> About
+ifeq ($(VERTEX_BUILDTYPE),OFFICIAL)
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)
+else
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
+endif
+
 # Name of flashable zip
 VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
 
-# Version Shown in Settings -> About
-VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.version=$(VERTEX_VERSION) \
