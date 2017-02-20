@@ -52,7 +52,7 @@
     </string-array>
 
     <!-- Enable lockscreen rotation by default -->
-    <bool name="config_enableLockScreenRotation">true</bool>
+    <bool name="config_enableLockScreenRotation">false</bool>
 
     <!-- Whether to persist the notification for when a usb drive device is plugged in -->
 <!--
@@ -66,5 +66,7 @@
          dozing).  This should be enabled if you have such services and expect apps to
          correctly use them when installed on your device.  Otherwise, keep this disabled
          so that applications can still use their own mechanisms. -->
+<!--
     <bool name="config_enableAutoPowerModes">true</bool>
+-->
 </resources>
