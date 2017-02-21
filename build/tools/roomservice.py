@@ -51,7 +51,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from CyanogenMod Github (http://github.com/CyanogenMod)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from LineageOS Github (http://github.com/LineageOS)." % device)
 
 repositories = []
 
@@ -71,7 +71,7 @@ def add_auth(githubreq):
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:CyanogenMod+in:name+fork:true" % device)
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:LineageOS+in:name+fork:true" % device)
     add_auth(githubreq)
     try:
         result = json.loads(urllib.request.urlopen(githubreq).read().decode())
@@ -173,14 +173,19 @@ def add_to_manifest(repositories, fallback_branch = None):
     for repository in repositories:
         repo_name = repository['repository']
         repo_target = repository['target_path']
+
+        # Grab repo from LineageOS by default if user/organization is not specified
+        if len(repo_name.split("/")) == 1:
+            repo_name = "LineageOS/" + repo_name
+
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('CyanogenMod/%s already fetched to %s' % (repo_name, repo_target))
+            print('%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        print('Adding dependency: CyanogenMod/%s -> %s' % (repo_name, repo_target))
+        print('Adding dependency: %s -> %s' % (repo_name, repo_target))
         project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "CyanogenMod/%s" % repo_name })
+            "remote": "github", "name": "%s" % repo_name })
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
@@ -294,4 +299,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the CyanogenMod Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
