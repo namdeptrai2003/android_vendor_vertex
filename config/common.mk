@@ -175,10 +175,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
-    telephony-ext
+    telephony-ext \
+	rcscommon
 
 PRODUCT_BOOT_JARS += \
-    telephony-ext
+    telephony-ext \
+	rcscommon
+
+#RCS //Needed for Contacts and Mms Apps
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_aidl_static \
+    rcs_service_api \
+    rcs_service_api.xml \
+    rcscommon.xml
 
 # These packages are excluded from user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
