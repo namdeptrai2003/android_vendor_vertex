@@ -47,7 +47,7 @@
          on the current state of the device. -->
     <string-array translatable="false" name="config_globalActionsList">
         <item>power</item>
-        <item>restart</item>
+        <item>reboot</item>
     </string-array>
 
     <!-- Enable lockscreen rotation by default -->
