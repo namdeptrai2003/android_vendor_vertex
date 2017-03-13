@@ -82,9 +82,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
-# Required Vertex packages
+# Dev Tools
+ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_PACKAGES += \
-    Development \
+    Development
+endif
 
 # Optional Vertex packages
 PRODUCT_PACKAGES += \
