@@ -91,7 +91,7 @@ endif
 # Optional Vertex packages
 PRODUCT_PACKAGES += \
     libemoji \
-    LiveWallpapersPicker \
+    WallpaperPicker \
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
