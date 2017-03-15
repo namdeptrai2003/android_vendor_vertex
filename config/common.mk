@@ -92,6 +92,7 @@ endif
 PRODUCT_PACKAGES += \
     libemoji \
     WallpaperPicker \
+    LiveWallpapersPicker \
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
