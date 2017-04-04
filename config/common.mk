@@ -208,7 +208,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v2.1
+PRODUCT_VERSION = v2.2
 CODE_NAME = Blazar
 
 # Unofficial by default unless defined
