@@ -1,12 +1,17 @@
 # For prefetcher to read themes
+allow dumpstate app_data_file:fifo_file getattr;
 allow dumpstate dalvikcache_data_file:dir r_dir_perms;
 allow dumpstate dalvikcache_data_file:file r_file_perms;
 allow dumpstate resourcecache_data_file:dir r_dir_perms;
 allow dumpstate resourcecache_data_file:file r_file_perms;
 allow dumpstate fuse:dir r_dir_perms;
 allow dumpstate fuse:file r_file_perms;
+allow dumpstate iop_socket:sock_file unlink;
+allow dumpstate iop_data_file:sock_file { setattr create };
 allow dumpstate themeservice_app_data_file:dir r_dir_perms;
 allow dumpstate themeservice_app_data_file:file r_file_perms;
 allow dumpstate wcnss_service_exec:file rx_file_perms;
-allow dumpstate media_rw_data_file:dir search;
-allow dumpstate sdcardfs:file getattr;
+allow dumpstate media_rw_data_file:dir r_dir_perms;
+allow dumpstate media_rw_data_file:file r_file_perms;
+allow dumpstate sdcardfs:dir r_dir_perms;
+allow dumpstate sdcardfs:file r_file_perms;

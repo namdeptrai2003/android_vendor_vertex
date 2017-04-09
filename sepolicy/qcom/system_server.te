@@ -8,3 +8,6 @@ allow system_server time_daemon:unix_stream_socket connectto;
 #allow reading of usb sysfs to query hvdcp state
 allow system_server sysfs_usb_supply:dir { search };
 allow system_server sysfs_usb_supply:file r_file_perms;
+
+# IOP
+allow system_server iop_data_file:sock_file write;
