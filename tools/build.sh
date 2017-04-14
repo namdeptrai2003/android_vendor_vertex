@@ -41,4 +41,4 @@ do
     esac
 done
 
-time mka bacon
+time make bacon -j16
