@@ -24,7 +24,4 @@
 
 <!-- Should "4G" be shown instead of "LTE" when the network is NETWORK_TYPE_LTE? -->
     <bool name="config_show4GForLTE">false</bool>
-
-<!-- show different network indicators -->
-    <bool name="show_network_indicators">true</bool>
 </resources>
