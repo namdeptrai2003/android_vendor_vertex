@@ -10,11 +10,13 @@ do
             export VERTEX_BUILDTYPE=OFFICIAL
             . build/envsetup.sh
             lunch vertex_oneplus3-user
+            find . -name "*Development*.apk" | xargs rm
             break;;
         "OFFICIAL-userdebug")
             export VERTEX_BUILDTYPE=OFFICIAL
             . build/envsetup.sh
             lunch vertex_oneplus3-userdebug
+            find . -name "*Development*.apk" | xargs rm
             break;;
         "TEST-user")
             export VERTEX_BUILDTYPE=TEST
