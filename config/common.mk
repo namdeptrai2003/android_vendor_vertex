@@ -207,8 +207,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v2.2
-CODE_NAME = Blazar
+PRODUCT_VERSION = v3.0
+CODE_NAME = Carbide
 
 # Unofficial by default unless defined
 ifndef VERTEX_BUILDTYPE
