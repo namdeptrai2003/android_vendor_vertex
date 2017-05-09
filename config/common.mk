@@ -207,7 +207,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 # Set version
-PRODUCT_VERSION = v3.0
+PRODUCT_VERSION = v3.1
 CODE_NAME = Carbide
 
 # Unofficial by default unless defined
