@@ -17,7 +17,6 @@ endif
 # Name of flashable zip
 VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
 
-
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.version=$(VERTEX_VERSION) \
   ro.vertex.releasetype=$(VERTEX_BUILDTYPE) \
@@ -125,6 +124,9 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     LockClock \
     ThemeInterfacer	
+
+# Bluetooth Audio (A2DP)
+PRODUCT_PACKAGES += libbthost_if
 
 # Exchange support
 PRODUCT_PACKAGES += \
