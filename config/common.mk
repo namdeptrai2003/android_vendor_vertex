@@ -1,4 +1,7 @@
+####################
 # VertexOS Version
+####################
+
 PRODUCT_VERSION = v3.1
 CODE_NAME = Carbide
 
@@ -17,6 +20,17 @@ endif
 # Name of flashable zip
 VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
 
+#########
+# Flags
+#########
+
+# Recommend using the non debug dexpreopter
+USE_DEX2OAT_DEBUG := false
+
+##############
+# Properties
+##############
+
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.version=$(VERTEX_VERSION) \
   ro.vertex.releasetype=$(VERTEX_BUILDTYPE) \
@@ -24,10 +38,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.vertex.display.version=$(VERTEX_VERSION) \
-
-# Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vertex/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -50,21 +60,30 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.dun.override=0
 
-# Import some sounds
-$(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
-
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Iapetus.ogg \
     ro.config.alarm_alert=Timer.ogg
+
+# Storage manager
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.storage_manager.enabled=true
 
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication for user and userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
-# Recommend using the non debug dexpreopter
-USE_DEX2OAT_DEBUG := false
+##############
+# Copy Files
+##############
+
+# Boot Animation
+PRODUCT_COPY_FILES += \
+    vendor/vertex/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
+
+# Import some sounds
+$(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
@@ -104,17 +123,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
-## Dev Tools
-#ifneq ($(TARGET_BUILD_VARIANT),user)
-#PRODUCT_PACKAGES += \
-#    Development
-#endif
-
-# Optional Vertex packages
-PRODUCT_PACKAGES += \
-    libemoji \
-    WallpaperPicker \
-    LiveWallpapersPicker \
+############
+# Packages
+############
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
@@ -123,9 +134,11 @@ PRODUCT_PACKAGES += \
 
 # Custom Vertex packages
 PRODUCT_PACKAGES += \
-    ExactCalculator \
+    libemoji \
+    LiveWallpapersPicker \
     Launcher3 \
     LockClock \
+    WallpaperPicker \
     ThemeInterfacer	
 
 # Bluetooth Audio (A2DP)
@@ -135,7 +148,7 @@ PRODUCT_PACKAGES += libbthost_if
 PRODUCT_PACKAGES += \
     Exchange2
 
-# Support additional filesystems
+# Filesystems support
 PRODUCT_PACKAGES += \
     fsck.ntfs \
     mke2fs \
@@ -178,15 +191,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
-## Custom off-mode charger
-#ifneq ($(WITH_CM_CHARGER),false)
-#PRODUCT_PACKAGES += \
-#    charger_res_images \
-#    cm_charger_res_images \
-#    font_log.png \
-#    libhealthd.cm
-#endif
-
 # Stagefright FFMPEG plugin
 ifneq ($(BOARD_USES_QCOM_HARDWARE),true)
 PRODUCT_PACKAGES += \
@@ -199,10 +203,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 endif
 
-# Storage manager
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.storage_manager.enabled=true
-
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext \
@@ -212,7 +212,25 @@ PRODUCT_BOOT_JARS += \
 
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
+## Custom off-mode charger
+#ifneq ($(WITH_CM_CHARGER),false)
+#PRODUCT_PACKAGES += \
+#    charger_res_images \
+#    cm_charger_res_images \
+#    font_log.png \
+#    libhealthd.cm
+#endif
+
+## Dev Tools
+#ifneq ($(TARGET_BUILD_VARIANT),user)
+#PRODUCT_PACKAGES += \
+#    Development
+#endif
+
+##################
 # Signing Builds
+##################
+
 ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
     PRODUCT_EXTRA_RECOVERY_KEYS += \
         vendor/vertex/build/target/product/security/vertex \
