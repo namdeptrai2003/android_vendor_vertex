@@ -227,14 +227,3 @@ DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 #    Development
 #endif
 
-##################
-# Signing Builds
-##################
-
-ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
-    PRODUCT_EXTRA_RECOVERY_KEYS += \
-        vendor/vertex/build/target/product/security/vertex \
-        vendor/vertex/build/target/product/security/vertex-devkey
-endif
-
--include vendor/vertex-priv/keys/keys.mk
