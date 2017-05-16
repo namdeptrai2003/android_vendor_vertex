@@ -1,4 +1,32 @@
-# Boot Animation - Black Google Pixel
+# VertexOS Version
+PRODUCT_VERSION = v3.1
+CODE_NAME = Carbide
+
+# Unofficial by default unless defined
+ifndef VERTEX_BUILDTYPE
+	VERTEX_BUILDTYPE := UNOFFICIAL
+endif
+
+# Version Shown in Settings -> About
+ifeq ($(VERTEX_BUILDTYPE),OFFICIAL)
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)
+else
+VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
+endif
+
+# Name of flashable zip
+VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
+
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.vertex.version=$(VERTEX_VERSION) \
+  ro.vertex.releasetype=$(VERTEX_BUILDTYPE) \
+  ro.modversion=$(VERTEX_MODVERSION)
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.vertex.display.version=$(VERTEX_VERSION) \
+
+# Boot Animation
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
 
@@ -13,7 +41,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    keyguard.no_require_sim=true
+    keyguard.no_require_sim=true \
+    ro.opa.eligible_device=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
@@ -22,10 +51,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.dun.override=0
 
-# Enable Google Assistant
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.opa.eligible_device=true
-							  
 # Import some sounds
 $(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
 
@@ -34,13 +59,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Iapetus.ogg \
     ro.config.alarm_alert=Timer.ogg
 
-ifneq ($(TARGET_BUILD_VARIANT),user)
-# Thank you, please drive thru!
-PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
-endif
-
 ifneq ($(TARGET_BUILD_VARIANT),eng)
-# Enable ADB authentication
+# Enable ADB authentication for user and userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
@@ -82,11 +102,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
-# Dev Tools
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_PACKAGES += \
-    Development
-endif
+## Dev Tools
+#ifneq ($(TARGET_BUILD_VARIANT),user)
+#PRODUCT_PACKAGES += \
+#    Development
+#endif
 
 # Optional Vertex packages
 PRODUCT_PACKAGES += \
@@ -110,31 +130,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Exchange2
 
-# Extra tools in Vertex
+# Support additional filesystems
 PRODUCT_PACKAGES += \
-    bzip2 \
-    curl \
     fsck.ntfs \
-    gdbserver \
-    libsepol \
-    micro_bench \
     mke2fs \
     mkfs.ntfs \
     mount.ntfs \
-    pigz \
-    sqlite3 \
-    strace \
-    tune2fs \
-    wget
-
-# Custom off-mode charger
-ifneq ($(WITH_CM_CHARGER),false)
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    cm_charger_res_images \
-    font_log.png \
-    libhealthd.cm
-endif
+    tune2fs
 
 # ExFAT support
 WITH_EXFAT ?= true
@@ -145,6 +147,17 @@ PRODUCT_PACKAGES += \
     fsck.exfat \
     mkfs.exfat
 endif
+
+# Extra tools in Vertex
+PRODUCT_PACKAGES += \
+    bzip2 \
+    curl \
+    gdbserver \
+    libsepol \
+    micro_bench \
+    sqlite3 \
+    strace \
+    wget
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -159,6 +172,15 @@ PRODUCT_PACKAGES += \
 # rsync
 PRODUCT_PACKAGES += \
     rsync
+
+## Custom off-mode charger
+#ifneq ($(WITH_CM_CHARGER),false)
+#PRODUCT_PACKAGES += \
+#    charger_res_images \
+#    cm_charger_res_images \
+#    font_log.png \
+#    libhealthd.cm
+#endif
 
 # Stagefright FFMPEG plugin
 ifneq ($(BOARD_USES_QCOM_HARDWARE),true)
@@ -183,60 +205,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
-#RCS //Needed for Contacts and Mms Apps
-PRODUCT_PACKAGES += \
-    rcs_service_aidl \
-    rcs_service_aidl.xml \
-    rcs_service_aidl_static \
-    rcs_service_api \
-    rcs_service_api.xml \
-    rcscommon.xml \
-	rcscommon
-
-# These packages are excluded from user builds
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_PACKAGES += \
-    procmem \
-    procrank \
-    su
-endif
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=0
-
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
-# Set version
-PRODUCT_VERSION = v3.1
-CODE_NAME = Carbide
-
-# Unofficial by default unless defined
-ifndef VERTEX_BUILDTYPE
-	VERTEX_BUILDTYPE := UNOFFICIAL
-endif
-
-# Version Shown in Settings -> About
-ifeq ($(VERTEX_BUILDTYPE),OFFICIAL)
-VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)
-else
-VERTEX_MODVERSION := $(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)
-endif
-
-# Name of flashable zip
-VERTEX_VERSION := VertexOS-$(CODE_NAME)-$(PRODUCT_VERSION)-$(VERTEX_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(VERTEX_BUILD)
-
-
-PRODUCT_PROPERTY_OVERRIDES += \
-  ro.vertex.version=$(VERTEX_VERSION) \
-  ro.vertex.releasetype=$(VERTEX_BUILDTYPE) \
-  ro.modversion=$(VERTEX_MODVERSION)
-
-
-PRODUCT_PROPERTY_OVERRIDES += \
-  ro.vertex.display.version=$(VERTEX_VERSION) \
-  ro.caf.version=$(shell grep "<default revision=" .repo/manifest.xml | awk -F'"' '{print $$2}'| awk  -F "/" '{print $$3}')
-
-
+# Signing Builds
 ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
     PRODUCT_EXTRA_RECOVERY_KEYS += \
         vendor/vertex/build/target/product/security/vertex \
