@@ -69,6 +69,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.storage_manager.enabled=true
 
+# Always disable Strict Mode (even on eng builds)
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.strictmode.disable=1
+
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication for user and userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
