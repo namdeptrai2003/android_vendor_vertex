@@ -214,6 +214,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+# RCS 
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_aidl_static \
+    rcs_service_api \
+    rcs_service_api.xml \
+    rcscommon.xml
+
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
 ## Custom off-mode charger
