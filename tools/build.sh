@@ -1,21 +1,12 @@
 #!/bin/bash
-export VERTEX_BUILDTYPE=TEST
-export VERTEX_BUILDTYPE=OFFICIAL
-
 echo "Choose build type:"
-select choice in OFFICIAL-user TEST-user EXPERIMENTAL-user OFFICIAL-userdebug TEST-userdebug EXPERIMENTAL-userdebug
+select choice in OFFICIAL-user TEST-user EXPERIMENTAL-user TEST-userdebug EXPERIMENTAL-userdebug EXPERIMENTAL-eng
 do
     case "$choice" in
         "OFFICIAL-user")
             export VERTEX_BUILDTYPE=OFFICIAL
             . build/envsetup.sh
             lunch vertex_oneplus3-user
-            find . -name "*Development*.apk" | xargs rm
-            break;;
-        "OFFICIAL-userdebug")
-            export VERTEX_BUILDTYPE=OFFICIAL
-            . build/envsetup.sh
-            lunch vertex_oneplus3-userdebug
             find . -name "*Development*.apk" | xargs rm
             break;;
         "TEST-user")
@@ -37,6 +28,11 @@ do
             export VERTEX_BUILDTYPE=EXPERIMENTAL
             . build/envsetup.sh
             lunch vertex_oneplus3-userdebug
+            break;;
+        "EXPERIMENTAL-eng")
+            export VERTEX_BUILDTYPE=EXPERIMENTAL
+            . build/envsetup.sh
+            lunch vertex_oneplus3-eng
             break;;
         *) echo "Invalid option. Try again!"
             ;;
