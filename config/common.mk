@@ -143,6 +143,7 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     LockClock \
     WallpaperPicker \
+	ThemeInterfacer
 
 # Bluetooth Audio (A2DP)
 PRODUCT_PACKAGES += libbthost_if
