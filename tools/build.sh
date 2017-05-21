@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Choose build type:"
-select choice in OFFICIAL-user TEST-user EXPERIMENTAL-user TEST-userdebug EXPERIMENTAL-userdebug EXPERIMENTAL-eng
+select choice in OFFICIAL-user TEST-user EXPERIMENTAL-user TEST-userdebug EXPERIMENTAL-userdebug TEST-eng EXPERIMENTAL-eng
 do
     case "$choice" in
         "OFFICIAL-user")
@@ -18,6 +18,11 @@ do
             export VERTEX_BUILDTYPE=TEST
             . build/envsetup.sh
             lunch vertex_oneplus3-userdebug
+            break;;
+        "TEST-eng")
+            export VERTEX_BUILDTYPE=TEST
+            . build/envsetup.sh
+            lunch vertex_oneplus3-eng
             break;;
         "EXPERIMENTAL-user")
             export VERTEX_BUILDTYPE=EXPERIMENTAL
