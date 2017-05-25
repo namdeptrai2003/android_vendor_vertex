@@ -90,10 +90,6 @@ PRODUCT_COPY_FILES += \
 # Import some sounds
 $(call inherit-product-if-exists, frameworks/base/data/sounds/GoogleAudio.mk)
 
-# Copy over the changelog to the device
-PRODUCT_COPY_FILES += \
-    vendor/vertex/CHANGELOG.mkdn:system/etc/CHANGELOG-VertexOS.txt
-
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \

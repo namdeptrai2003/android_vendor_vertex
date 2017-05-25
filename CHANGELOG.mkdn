@@ -1,8 +1,0 @@
-VertexOS
-===============
-
-CHANGELOG (notable new features)
----------
-
-### 7.1 Alpha
-* First release
