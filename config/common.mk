@@ -237,3 +237,6 @@ DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 #    Development
 #endif
 
+#OTA
+ PRODUCT_PACKAGES += \
+         OTAUpdates
