@@ -222,14 +222,14 @@ PRODUCT_PACKAGES += \
 
 DEVICE_PACKAGE_OVERLAYS += vendor/vertex/overlay/common
 
-## Custom off-mode charger
-#ifneq ($(WITH_CM_CHARGER),false)
-#PRODUCT_PACKAGES += \
-#    charger_res_images \
-#    cm_charger_res_images \
-#    font_log.png \
-#    libhealthd.cm
-#endif
+# Custom off-mode charger
+ifneq ($(WITH_CM_CHARGER),false)
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    cm_charger_res_images \
+    font_log.png \
+    libhealthd.cm
+endif
 
 ## Dev Tools
 #ifneq ($(TARGET_BUILD_VARIANT),user)
