@@ -124,6 +124,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vertex/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
+# Preloaded-classes
+PRODUCT_COPY_FILES += \
+	frameworks/base/preloaded-classes:system/etc/preloaded-classes
+
 ############
 # Packages
 ############
