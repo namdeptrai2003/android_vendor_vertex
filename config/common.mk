@@ -5,9 +5,9 @@
 PRODUCT_VERSION = v3.4
 CODE_NAME = Carbide
 
-# Unofficial by default unless defined
+# Official by default unless defined
 ifndef VERTEX_BUILDTYPE
-	VERTEX_BUILDTYPE := UNOFFICIAL
+	VERTEX_BUILDTYPE := OFFICIAL
 endif
 
 # Version Shown in Settings -> About
